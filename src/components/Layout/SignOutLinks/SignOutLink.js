@@ -1,11 +1,14 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 import './SignOutLink.css';
 
 const SignOutLinks = (props) => (
-	<div>
-		<p>SignOutLinks</p>
-	</div>
+	<ul className='nav-links'>
+		<li className='link'>
+			<NavLink to='/'>Sign In</NavLink>
+		</li>
+	</ul>
 );
 
 export default SignOutLinks;
