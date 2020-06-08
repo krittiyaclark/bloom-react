@@ -18,5 +18,11 @@
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
-	margin-top: 15px;
+	margin-top: 9vh;
+}
+
+@media (max-width: 400px) {
+	.content-wrapper {
+		margin-top: 15vh;
+	}
 }

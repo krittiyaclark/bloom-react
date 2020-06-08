@@ -13,7 +13,7 @@
 	flex-direction: column;
 	min-height: 100vh;
 
-	margin-top: 15px;
+	margin-top: 9vh;
 }
 
 section {
@@ -28,5 +28,11 @@ aside {
 @media screen and (min-width: 640px) {
 	.container {
 		display: flex;
+	}
+}
+
+@media (max-width: 400px) {
+	.content-wrapper {
+		margin-top: 15vh;
 	}
 }

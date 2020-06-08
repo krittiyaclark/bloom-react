@@ -1,0 +1,29 @@
+.sign-up {
+	display: flex;
+	flex-direction: column;
+	width: 32%;
+}
+
+.title {
+	margin: 10px 0;
+}
+
+.col {
+	flex: 1;
+}
+
+@media (max-width: 400px) {
+	.sign-up {
+		display: block;
+		width: 100%;
+
+		padding: 0 20px;
+		box-sizing: border-box;
+	}
+
+	.title,
+	.text-grey {
+		display: flex;
+		justify-content: center;
+	}
+}
