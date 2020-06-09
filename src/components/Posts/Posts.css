@@ -3,9 +3,9 @@
 	flex-direction: row;
 } */
 
-.container {
+/* .container {
 	margin: auto;
-	/* max-width: 75rem; */
+	max-width: 75rem;
 	display: flex;
 	flex-direction: row;
 
@@ -25,4 +25,4 @@
 	.content-wrapper {
 		margin-top: 15vh;
 	}
-}
+} */

@@ -5,7 +5,10 @@ import PostSummary from './PostSummary';
 const ProjectList = ({ postLists }) => {
 	console.log(postLists);
 	return (
-		<PostSummary />
+		<>
+			<PostSummary />
+			<PostSummary />
+		</>
 		// <>
 		// 	{postLists &&
 		// 		postLists.map((post) => {

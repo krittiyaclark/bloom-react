@@ -1,0 +1,69 @@
+header {
+	background-color: #57e6e6;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
+	padding: 26px 20px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+}
+
+.Toolbar-Nav {
+	height: 56px;
+	width: 100%;
+
+	max-width: 1010px;
+	margin: 0 auto;
+	position: fixed;
+
+	display: flex;
+	align-items: center;
+	padding: 0 20px;
+}
+
+.Toolbar-Logo {
+	height: 80%;
+}
+
+.Toolbar-Left {
+	width: 33.333%;
+	text-align: left;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 20px;
+	box-sizing: border-box;
+}
+
+@media (max-width: 499px) {
+	.Toolbar-Left {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+}
+
+.Toolbar-Center {
+	width: 33.333%;
+	text-align: center;
+}
+
+@media (max-width: 499px) {
+	.Toolbar-Center {
+		display: none;
+	}
+}
+
+.Toolbar-Right {
+	width: 33.333%;
+	text-align: right;
+}
+
+@media (max-width: 499px) {
+	.Toolbar-Right {
+		display: none;
+	}
+}

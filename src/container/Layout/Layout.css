@@ -1,0 +1,31 @@
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+
+	justify-content: flex-start; /* align items in Main Axis */
+	align-items: stretch; /* align items in Cross Axis */
+	align-content: stretch; /* Extra space in Cross Axis */
+}
+
+.container {
+	max-width: 1010px;
+	width: 100%;
+	margin: 20px auto;
+	-webkit-box-flex: 1;
+	-webkit-flex-grow: 1;
+	-ms-flex-positive: 1;
+	flex-grow: 1;
+	margin-top: 85px;
+	justify-content: space-between;
+}
+
+@media screen and(min-width: 415px) {
+	.container {
+		flex-direction: row;
+	}
+}
+
+/* section {
+	margin-top: 16px;
+} */

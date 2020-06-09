@@ -6,7 +6,7 @@ import './SignInLink.css';
 const SignInLinks = (props) => (
 	<ul className='nav-links'>
 		<li>
-			<NavLink to='/' className='link'>
+			<NavLink to='/createpost' className='link'>
 				Create Post
 			</NavLink>
 		</li>
