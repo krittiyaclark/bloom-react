@@ -3,6 +3,7 @@ import React from 'react';
 import SignInLinks from '../SignInLinks/SignInLink';
 import SignOutLinks from '../SignOutLinks/SignOutLink';
 import Input from '../../UI/Input/Input';
+import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
 
 import './Toolbar.css';
 
@@ -13,8 +14,7 @@ const Toolbar = (props) => {
 		<header>
 			<div className='Toolbar-Nav'>
 				<div className='Toolbar-Left'>
-					<div>MENU</div>
-					<div>DrawerToggle</div>
+					<DrawerToggle clicked={props.drawerToggleClicked} />
 					<div>Logo</div>
 				</div>
 
