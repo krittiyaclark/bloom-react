@@ -9,14 +9,16 @@ const PostSummary = ({ postLists }) => {
 	console.log(postLists);
 	return (
 		<Card>
-			<Thumbnail>
-				<img src='https://via.placeholder.com/150' alt='thumbnail' />
-			</Thumbnail>
+			<div className='PostWrapper'>
+				<Thumbnail>
+					<img src='https://via.placeholder.com/150' alt='thumbnail' />
+				</Thumbnail>
 
-			<div className='content'>
-				<span></span>
-				<p>Posted by Pai</p>
-				<p>9 November, 9pm</p>
+				<div className='content'>
+					<span>title</span>
+					<p>Posted by Pai</p>
+					<p>9 November, 9pm</p>
+				</div>
 			</div>
 		</Card>
 	);

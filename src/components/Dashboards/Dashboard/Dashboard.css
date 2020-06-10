@@ -1,8 +1,8 @@
-/* .container {
+.DashboardContainer {
 	margin: auto;
 	max-width: 1010px;
 	max-width: 75rem;
-} */
+}
 
 section {
 	flex: 1;
@@ -18,7 +18,7 @@ aside {
 }
 
 @media screen and (min-width: 640px) {
-	.container {
+	.DashboardContainer {
 		display: flex;
 	}
 }

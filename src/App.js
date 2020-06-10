@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import Layout from './container/Layout/Layout';
 import Dashboard from './components/Dashboards/Dashboard/Dashboard';
@@ -11,16 +11,14 @@ import './App.css';
 
 function App() {
 	return (
-		<BrowserRouter>
-			<Layout>
-				<Switch>
-					<Route path='/' exact component={Dashboard} />
-					<Route path='/post/:id' component={PostDetail} />
-					<Route path='/signinsignup' component={SignInAndSignUpPage} />
-					<Route path='/createpost' component={CreatePost} />
-				</Switch>
-			</Layout>
-		</BrowserRouter>
+		<Layout>
+			<Switch>
+				<Route path='/' exact component={Dashboard} />
+				<Route path='/post/:id' component={PostDetail} />
+				<Route path='/signinsignup' component={SignInAndSignUpPage} />
+				<Route path='/createpost' component={CreatePost} />
+			</Switch>
+		</Layout>
 	);
 }
 

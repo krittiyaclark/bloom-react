@@ -7,14 +7,15 @@ import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
 
 import './Toolbar.css';
 
-const Toolbar = (props) => {
-	console.log(props);
+const Toolbar = ({ currentUser, drawerToggleClicked }) => {
+	// console.log(props);
 
+	const links = currentUser ? <SignInLinks /> : <SignOutLinks />;
 	return (
 		<header>
 			<div className='Toolbar-Nav'>
 				<div className='Toolbar-Left'>
-					<DrawerToggle clicked={props.drawerToggleClicked} />
+					<DrawerToggle clicked={drawerToggleClicked} />
 					<div>Logo</div>
 				</div>
 
@@ -22,9 +23,7 @@ const Toolbar = (props) => {
 					<Input />
 				</div>
 
-				<div className='Toolbar-Right'>
-					<SignInLinks /> <SignOutLinks />
-				</div>
+				<div className='Toolbar-Right'>{links}</div>
 			</div>
 		</header>
 	);

@@ -9,12 +9,6 @@ const ProjectList = ({ postLists }) => {
 			<PostSummary />
 			<PostSummary />
 		</>
-		// <>
-		// 	{postLists &&
-		// 		postLists.map((post) => {
-		// 			return <PostSummary key={post.id} postLists={post} />;
-		// 		})}
-		// </>
 	);
 };
 

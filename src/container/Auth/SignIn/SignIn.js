@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import FormInput from '../../../components/UI/FormInput/FormInput';
 import Button from '../../../components/UI/Button/Button';
 
+import { signInWithGoogle } from '../../../firebase/firebase.utils';
+
 import './SignIn.css';
 
 class SignIn extends Component {
@@ -51,8 +53,12 @@ class SignIn extends Component {
 					</div>
 					<div className='input-field buttons'>
 						<Button type='submit'>SignIn</Button>
-						<Button className='btn bg-info' type='submit'>
-							SignIn With Google
+						<Button
+							className='btn bg-info'
+							type='submit'
+							onClick={signInWithGoogle}>
+							{' '}
+							SignIn With Google{' '}
 						</Button>
 
 						<div className='text-danger center'></div>
