@@ -2,12 +2,14 @@ import React from 'react';
 
 import PostSummary from './PostSummary';
 
-const ProjectList = ({ postLists }) => {
-	console.log(postLists);
+const ProjectList = ({ postsLists }) => {
+	console.log(postsLists);
 	return (
 		<>
-			<PostSummary />
-			<PostSummary />
+			{postsLists &&
+				postsLists.map((post) => {
+					return <PostSummary key={post.id} postList={post} />;
+				})}
 		</>
 	);
 };

@@ -5,8 +5,8 @@ import Thumbnail from '../UI/Thumbnail/Thumbnail';
 
 import './Posts.css';
 
-const PostSummary = ({ postLists }) => {
-	console.log(postLists);
+const PostSummary = ({ postList }) => {
+	console.log(postList);
 	return (
 		<Card>
 			<div className='PostWrapper'>
@@ -15,7 +15,7 @@ const PostSummary = ({ postLists }) => {
 				</Thumbnail>
 
 				<div className='content'>
-					<span>title</span>
+					<span>{postList.title}</span>
 					<p>Posted by Pai</p>
 					<p>9 November, 9pm</p>
 				</div>
