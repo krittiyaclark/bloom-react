@@ -52,17 +52,15 @@ class SignIn extends Component {
 						/>
 					</div>
 					<div className='input-field buttons'>
-						<Button type='submit'>SignIn</Button>
-						<Button
-							className='btn bg-info'
-							type='submit'
-							onClick={signInWithGoogle}>
-							{' '}
-							SignIn With Google{' '}
-						</Button>
-
-						<div className='text-danger center'></div>
+						<div className='buttons'>
+							<Button type='submit'>SignIn</Button>
+							<Button type='submit' onClick={signInWithGoogle} isGoogleSignIn>
+								{' '}
+								SignIn With Google{' '}
+							</Button>
+						</div>
 					</div>
+					<div className='text-danger center'></div>
 				</form>
 			</div>
 		);
