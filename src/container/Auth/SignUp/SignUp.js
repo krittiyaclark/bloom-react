@@ -3,6 +3,11 @@ import React, { Component } from 'react';
 import FormInput from '../../../components/UI/FormInput/FormInput';
 import Button from '../../../components/UI/Button/Button';
 
+import {
+	auth,
+	createUserProfileDocument,
+} from '../../../firebase/firebase.utils';
+
 import './SignUp.css';
 
 class SignUp extends Component {
@@ -13,9 +18,35 @@ class SignUp extends Component {
 		confirmPassword: '',
 	};
 
-	handleSubmit = (event) => {
+	handleSubmit = async (event) => {
 		event.preventDefault();
+
+		const { displayName, email, password, confirmPassword } = this.state;
+
 		console.log(this.state);
+
+		if (password !== confirmPassword) {
+			alert("passwords don't match");
+			return;
+		}
+
+		try {
+			const { user } = await auth.createUserWithEmailAndPassword(
+				email,
+				password
+			);
+
+			await createUserProfileDocument(user, { displayName });
+
+			this.setState({
+				displayName: '',
+				email: '',
+				password: '',
+				confirmPassword: '',
+			});
+		} catch (error) {
+			console.error(error);
+		}
 	};
 
 	handleChange = (event) => {
@@ -70,7 +101,7 @@ class SignUp extends Component {
 						/>
 					</div>
 					<div className='input-field'>
-						<Button type='submit'>SignUp</Button>
+						<Button type='submit'>Sign Up</Button>
 						<div className='text-danger center'></div>
 					</div>
 				</form>
