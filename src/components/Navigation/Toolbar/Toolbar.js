@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import SignInLinks from '../SignInLinks/SignInLink';
 import SignOutLinks from '../SignOutLinks/SignOutLink';
@@ -29,4 +30,11 @@ const Toolbar = ({ currentUser, drawerToggleClicked }) => {
 	);
 };
 
-export default Toolbar;
+const mapStateToProps = (state) => {
+	console.log(state);
+	return {
+		currentUser: state.user.currentUser,
+	};
+};
+
+export default connect(mapStateToProps)(Toolbar);

@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import Footer from '../../components/Footer/Footer';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
 
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
-
+import { setCurrentUser } from '../../redux/user/user.actions';
 import './Layout.css';
 
 class Layout extends Component {
 	state = {
 		showSideDrawer: false,
-		currentUser: null,
+		// currentUser: null,
 	};
 
 	// sideDrawer
@@ -29,17 +30,16 @@ class Layout extends Component {
 	unsubscribeFromAuth = null;
 
 	componentDidMount() {
+		const { setCurrentUser } = this.props;
 		this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
 			if (userAuth) {
 				const userRef = await createUserProfileDocument(userAuth);
 
 				userRef.onSnapshot((snapShot) => {
-					this.setState(
+					setCurrentUser(
 						{
-							currentUser: {
-								id: snapShot.id,
-								...snapShot.data(),
-							},
+							id: snapShot.id,
+							...snapShot.data(),
 						},
 						() => {
 							console.log(this.state);
@@ -48,7 +48,7 @@ class Layout extends Component {
 				});
 			}
 
-			this.setState({ currentUser: userAuth });
+			setCurrentUser(userAuth);
 		});
 	}
 
@@ -62,7 +62,7 @@ class Layout extends Component {
 			<div className='wrapper'>
 				<Toolbar
 					drawerToggleClicked={this.sideDrawerToggleHandler}
-					currentUser={this.state.currentUser}
+					// currentUser={this.state.currentUser}
 				/>
 				<SideDrawer
 					closed={this.sideDrawerClosedHandler}
@@ -77,4 +77,9 @@ class Layout extends Component {
 	}
 }
 
-export default Layout;
+const mapDispatchToProps = (dispatch) => {
+	return {
+		setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+	};
+};
+export default connect(null, mapDispatchToProps)(Layout);

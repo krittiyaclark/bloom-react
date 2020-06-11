@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
+import { createPost } from '../../redux/post/post.actions';
 import FormInput from '../../components/UI/FormInput/FormInput';
 import FormTextArea from '../../components/UI/FormTextArea/FormTextArea';
 import Button from '../../components/UI/Button/Button';
@@ -14,6 +16,7 @@ class CreatePost extends Component {
 	handleSubmit = (event) => {
 		event.preventDefault();
 		console.log(this.state);
+		this.props.createPost(this.state);
 	};
 
 	handleChange = (event) => {
@@ -56,13 +59,12 @@ class CreatePost extends Component {
 	}
 }
 
-// const mapDispatchToProps = (dispatch) => {
-// 	return {
-// 		createPost: (post) => {
-// 			dispatch(createPost(post));
-// 		},
-// 	};
-// };
+const mapDispatchToProps = (dispatch) => {
+	return {
+		createPost: (post) => {
+			dispatch(createPost(post));
+		},
+	};
+};
 
-// export default connect(null, mapDispatchToProps)(CreatePost);
-export default CreatePost;
+export default connect(null, mapDispatchToProps)(CreatePost);
