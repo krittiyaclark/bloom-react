@@ -9,7 +9,7 @@ import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
 import './Toolbar.css';
 
 const Toolbar = ({ currentUser, drawerToggleClicked }) => {
-	// console.log(props);
+	// console.log(currentUser);
 
 	const links = currentUser ? <SignInLinks /> : <SignOutLinks />;
 	return (

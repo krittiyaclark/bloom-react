@@ -82,4 +82,5 @@ const mapDispatchToProps = (dispatch) => {
 		setCurrentUser: (user) => dispatch(setCurrentUser(user)),
 	};
 };
+
 export default connect(null, mapDispatchToProps)(Layout);

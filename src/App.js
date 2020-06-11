@@ -1,5 +1,6 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Layout from './container/Layout/Layout';
 import Dashboard from './components/Dashboards/Dashboard/Dashboard';
@@ -9,17 +10,30 @@ import CreatePost from './container/CreatePost/CreatePost';
 
 import './App.css';
 
-function App() {
+function App({ currentUser }) {
 	return (
 		<Layout>
 			<Switch>
-				<Route path='/' exact component={Dashboard} />
+				<Route exact path='/' component={Dashboard} />
 				<Route path='/post/:id' component={PostDetail} />
-				<Route path='/signinsignup' component={SignInAndSignUpPage} />
+				<Route
+					exact
+					path='/signinsignup'
+					render={() =>
+						currentUser ? <Redirect to='/' /> : <SignInAndSignUpPage />
+					}
+				/>
 				<Route path='/createpost' component={CreatePost} />
 			</Switch>
 		</Layout>
 	);
 }
 
-export default App;
+const mapStateToProps = (state) => {
+	console.log(state);
+	return {
+		currentUser: state.user.currentUser,
+	};
+};
+
+export default connect(mapStateToProps)(App);
