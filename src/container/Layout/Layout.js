@@ -12,7 +12,6 @@ import './Layout.css';
 class Layout extends Component {
 	state = {
 		showSideDrawer: false,
-		// currentUser: null,
 	};
 
 	// sideDrawer
@@ -60,10 +59,7 @@ class Layout extends Component {
 	render() {
 		return (
 			<div className='wrapper'>
-				<Toolbar
-					drawerToggleClicked={this.sideDrawerToggleHandler}
-					// currentUser={this.state.currentUser}
-				/>
+				<Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} />
 				<SideDrawer
 					closed={this.sideDrawerClosedHandler}
 					open={this.state.showSideDrawer}
@@ -82,4 +78,5 @@ const mapDispatchToProps = (dispatch) => {
 		setCurrentUser: (user) => dispatch(setCurrentUser(user)),
 	};
 };
+
 export default connect(null, mapDispatchToProps)(Layout);
