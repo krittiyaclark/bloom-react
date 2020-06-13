@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { fetchPost } from '../../../redux/post/post.actions';
 import Notification from '../Notification/Notifications';
 import PostList from '../../Posts/PostList';
 
@@ -33,4 +34,14 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps)(Dashboard);
+const mapDispatchToProps = (dispatch) => {
+	console.log(dispatch);
+
+	return {
+		fetchPost: (post) => {
+			dispatch(fetchPost(post));
+		},
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

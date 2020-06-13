@@ -17,6 +17,11 @@ class CreatePost extends Component {
 		event.preventDefault();
 		console.log(this.state);
 		this.props.createPost(this.state);
+
+		this.setState({
+			title: '',
+			content: '',
+		});
 	};
 
 	handleChange = (event) => {
