@@ -5,9 +5,21 @@ import { fetchPost } from '../../../redux/post/post.actions';
 import Notification from '../Notification/Notifications';
 import PostList from '../../Posts/PostList';
 
+import { firestore } from '../../../firebase/firebase.utils';
+
 import './Dashboard.css';
 
 class Dashboard extends Component {
+	// unsubscribeFromSnapshot = null;
+
+	// componentDidMount() {
+	// 	const postRef = firestore.collection('posts');
+
+	// 	postRef.onSnapshot(async (onSnapshot) => {
+	// 		console.log(onSnapshot);
+	// 	});
+	// }
+
 	render() {
 		console.log(this.props);
 		const { posts } = this.props;

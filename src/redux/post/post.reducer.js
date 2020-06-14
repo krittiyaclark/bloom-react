@@ -6,6 +6,7 @@ const INITIAL_STATE = {
 		{ id: '2', title: 'buy some bananas', content: 'some content' },
 		{ id: '3', title: 'learn React', content: 'some content' },
 	],
+	errorMessage: undefined,
 };
 
 const postReducer = (state = INITIAL_STATE, action) => {
@@ -23,7 +24,7 @@ const postReducer = (state = INITIAL_STATE, action) => {
 		case PostActionTypes.FETCH_POST_SUCCESS:
 			return {
 				...state,
-				collections: action.payload,
+				postsLists: action.payload,
 			};
 		case PostActionTypes.FETCH_POST_FAILURE:
 			return {
