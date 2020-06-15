@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import FormInput from '../../../components/UI/FormInput/FormInput';
 import Button from '../../../components/UI/Button/Button';
 
 import { auth, signInWithGoogle } from '../../../firebase/firebase.utils';
+
+import { signIn } from '../../../redux/user/user.actions';
 
 import './SignIn.css';
 
@@ -17,14 +20,15 @@ class SignIn extends Component {
 		event.preventDefault();
 		console.log(this.state);
 
-		const { email, password } = this.state;
+		// const { email, password } = this.state;
 
-		try {
-			await auth.signInWithEmailAndPassword(email, password);
-			this.setState({ email: '', password: '' });
-		} catch (error) {
-			console.log(error);
-		}
+		// try {
+		// 	await auth.signInWithEmailAndPassword(email, password);
+		// 	this.setState({ email: '', password: '' });
+		// } catch (error) {
+		// 	console.log(error);
+		// }
+		this.props.signIn(this.state);
 	};
 
 	handleChange = (event) => {
@@ -35,6 +39,8 @@ class SignIn extends Component {
 
 	render() {
 		const { email, password } = this.state;
+		const { authError } = this.props;
+
 		return (
 			<div className='sign-in'>
 				<form onSubmit={this.handleSubmit} className='col'>
@@ -69,11 +75,26 @@ class SignIn extends Component {
 							</Button>
 						</div>
 					</div>
-					<div className='text-danger center'></div>
+					<div className='authError'>
+						{authError ? <p>{authError}</p> : null}
+					</div>
 				</form>
 			</div>
 		);
 	}
 }
 
-export default SignIn;
+const mapStateToProps = (state) => {
+	console.log(state);
+	return {
+		authError: state.auth.authError,
+	};
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		signIn: (cred) => dispatch(signIn(cred)),
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

@@ -20,6 +20,10 @@
 	flex: 1;
 }
 
+.authError {
+	color: red;
+}
+
 @media (max-width: 400px) {
 	.sign-in {
 		display: block;
