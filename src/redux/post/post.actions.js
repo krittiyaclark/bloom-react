@@ -1,25 +1,27 @@
 import * as PostActionTypes from './post.actions.types';
-import { firestore, fetchPostLists } from '../../firebase/firebase.utils';
+import { firestore } from '../../firebase/firebase.utils';
 
-export const createPost = (post) => async (dispatch) => {
+export const createPost = (post) => {
 	const createdAt = new Date();
 
 	//  make async call to database
-	firestore
-		.collection('posts')
-		.add({
-			...post,
-			authorFirstName: 'Calvin',
-			authorLastName: 'Clark',
-			authorId: 12345,
-			createdAt,
-		})
-		.then(() => {
-			dispatch({ type: PostActionTypes.CREATE_POST, post });
-		})
-		.catch((error) => {
-			dispatch({ type: PostActionTypes.CREATE_POST_ERROR, error });
-		});
+	return (dispatch, getState, { getFirebase, getFirestore }) => {
+		firestore
+			.collection('posts')
+			.add({
+				...post,
+				authorFirstName: 'Calvin',
+				authorLastName: 'Clark',
+				authorId: 12345,
+				createdAt,
+			})
+			.then(() => {
+				dispatch({ type: PostActionTypes.CREATE_POST, post });
+			})
+			.catch((error) => {
+				dispatch({ type: PostActionTypes.CREATE_POST_ERROR, error });
+			});
+	};
 };
 
 export const fetchPostStart = () => ({

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
 
 import { fetchPost } from '../../../redux/post/post.actions';
 import Notification from '../Notification/Notifications';
@@ -8,10 +10,10 @@ import PostList from '../../Posts/PostList';
 import './Dashboard.css';
 
 class Dashboard extends Component {
-	componentDidMount() {
-		const { fetchPost } = this.props;
-		fetchPost();
-	}
+	// componentDidMount() {
+	// 	const { fetchPost } = this.props;
+	// 	fetchPost();
+	// }
 
 	render() {
 		console.log(this.props);
@@ -35,7 +37,7 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => {
 	console.log(state);
 	return {
-		posts: state.post.postsLists,
+		posts: state.firestore.ordered.posts,
 	};
 };
 
@@ -49,4 +51,8 @@ const mapDispatchToProps = (dispatch) => {
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+// export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default compose(
+	firestoreConnect([{ collection: 'posts' }]),
+	connect(mapStateToProps)
+)(Dashboard);
