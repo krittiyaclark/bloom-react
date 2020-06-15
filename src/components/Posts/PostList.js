@@ -7,8 +7,8 @@ const ProjectList = ({ postsLists }) => {
 	return (
 		<>
 			{postsLists &&
-				postsLists.map((post) => {
-					return <PostSummary key={post.id} postList={post} />;
+				postsLists.map((post, index) => {
+					return <PostSummary key={index} postList={post} />;
 				})}
 		</>
 	);

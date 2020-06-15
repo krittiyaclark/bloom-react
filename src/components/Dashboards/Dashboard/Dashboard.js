@@ -8,6 +8,11 @@ import PostList from '../../Posts/PostList';
 import './Dashboard.css';
 
 class Dashboard extends Component {
+	componentDidMount() {
+		const { fetchPost } = this.props;
+		fetchPost();
+	}
+
 	render() {
 		console.log(this.props);
 		const { posts } = this.props;
@@ -38,8 +43,8 @@ const mapDispatchToProps = (dispatch) => {
 	console.log(dispatch);
 
 	return {
-		fetchPost: (post) => {
-			dispatch(fetchPost(post));
+		fetchPost: (posts) => {
+			dispatch(fetchPost(posts));
 		},
 	};
 };

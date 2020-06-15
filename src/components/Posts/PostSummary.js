@@ -15,8 +15,11 @@ const PostSummary = ({ postList }) => {
 				</Thumbnail>
 
 				<div className='content'>
-					<span>{postList.title}</span>
-					<p>Posted by Pai</p>
+					<h2>{postList.title}</h2>
+					<p>{postList.content}</p>
+					<p>
+						Posted by {postList.authorFirstName} {postList.authorLastName}
+					</p>
 					<p>9 November, 9pm</p>
 				</div>
 			</div>
