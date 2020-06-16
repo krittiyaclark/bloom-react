@@ -53,11 +53,9 @@ ReactDOM.render(
 	<Provider store={store}>
 		<ReactReduxFirebaseProvider {...rrfProps}>
 			<BrowserRouter>
-				<React.StrictMode>
-					<AuthIsLoaded>
-						<App />
-					</AuthIsLoaded>
-				</React.StrictMode>
+				<AuthIsLoaded>
+					<App />
+				</AuthIsLoaded>
 			</BrowserRouter>
 		</ReactReduxFirebaseProvider>
 	</Provider>,

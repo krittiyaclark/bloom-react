@@ -1,52 +1,26 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import FormInput from '../../../components/UI/FormInput/FormInput';
 import Button from '../../../components/UI/Button/Button';
 
-import {
-	auth,
-	createUserProfileDocument,
-} from '../../../firebase/firebase.utils';
+import { signUp } from '../../../redux/auth/auth.actions';
 
 import './SignUp.css';
 
 class SignUp extends Component {
 	state = {
-		displayName: '',
+		firstName: '',
+		lastName: '',
 		email: '',
 		password: '',
-		confirmPassword: '',
 	};
 
-	handleSubmit = async (event) => {
+	handleSubmit = (event) => {
 		event.preventDefault();
 
-		const { displayName, email, password, confirmPassword } = this.state;
-
-		console.log(this.state);
-
-		if (password !== confirmPassword) {
-			alert("passwords don't match");
-			return;
-		}
-
-		try {
-			const { user } = await auth.createUserWithEmailAndPassword(
-				email,
-				password
-			);
-
-			await createUserProfileDocument(user, { displayName });
-
-			this.setState({
-				displayName: '',
-				email: '',
-				password: '',
-				confirmPassword: '',
-			});
-		} catch (error) {
-			console.error(error);
-		}
+		this.props.signUp(this.state);
 	};
 
 	handleChange = (event) => {
@@ -56,7 +30,10 @@ class SignUp extends Component {
 	};
 
 	render() {
-		const { displayName, email, password, confirmPassword } = this.state;
+		const { firstName, lastName, email, password } = this.state;
+
+		const { auth, authError } = this.props;
+		if (auth.uid) return <Redirect to='/' />;
 		return (
 			<div className='sign-up'>
 				<form onSubmit={this.handleSubmit} className='col'>
@@ -65,10 +42,18 @@ class SignUp extends Component {
 					<div className='input-field'>
 						<FormInput
 							type='text'
-							name='displayName'
-							value={displayName}
+							name='firstName'
+							value={firstName}
 							onChange={this.handleChange}
-							label='Display Name'
+							label='First Name'
+							required
+						/>
+						<FormInput
+							type='text'
+							name='lastName'
+							value={lastName}
+							onChange={this.handleChange}
+							label='Last Name'
 							required
 						/>
 						<FormInput
@@ -91,18 +76,10 @@ class SignUp extends Component {
 						/>
 					</div>
 					<div className='input-field'>
-						<FormInput
-							type='password'
-							name='confirmPassword'
-							handleChange={this.handleChange}
-							value={confirmPassword}
-							label='confirm password'
-							required
-						/>
-					</div>
-					<div className='input-field'>
 						<Button type='submit'>Sign Up</Button>
-						<div className='text-danger center'></div>
+						<div className='text-danger center'>
+							{authError ? <p>{authError}</p> : null}
+						</div>
 					</div>
 				</form>
 			</div>
@@ -110,4 +87,20 @@ class SignUp extends Component {
 	}
 }
 
-export default SignUp;
+const mapStateToProps = (state) => {
+	console.log(state);
+	return {
+		auth: state.firebase.auth,
+		authError: state.auth.authError,
+	};
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		signUp: (newUser) => {
+			dispatch(signUp(newUser));
+		},
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
