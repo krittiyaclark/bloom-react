@@ -1,5 +1,4 @@
 import * as PostActionTypes from './post.actions.types';
-import { firestore } from '../../firebase/firebase.utils';
 
 export const createPost = (post) => {
 	const createdAt = new Date();
@@ -7,13 +6,20 @@ export const createPost = (post) => {
 	//  make async call to database
 	return (dispatch, getState, { getFirebase, getFirestore }) => {
 		dispatch({ type: PostActionTypes.CREATE_POST_START });
+
+		// Retrive firestore
+		const firestore = getFirestore();
+		// Retrive user information
+		const profile = getState().firebase.profile;
+		const authorId = getState().firebase.auth.uid;
+
 		firestore
 			.collection('posts')
 			.add({
 				...post,
-				authorFirstName: 'Calvin',
-				authorLastName: 'Clark',
-				authorId: 12345,
+				authorFirstName: profile.firstName,
+				authorLastName: profile.lastName,
+				authorId: authorId,
 				createdAt,
 			})
 			.then(() => {

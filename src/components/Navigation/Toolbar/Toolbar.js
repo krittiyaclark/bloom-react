@@ -9,7 +9,6 @@ import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
 import './Toolbar.css';
 
 const Toolbar = ({ auth, drawerToggleClicked }) => {
-	// const { auth } = auth;
 	console.log(auth);
 
 	const links = auth.uid ? <SignInLinks /> : <SignOutLinks />;

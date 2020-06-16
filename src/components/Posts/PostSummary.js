@@ -7,6 +7,13 @@ import './Posts.css';
 
 const PostSummary = ({ postList }) => {
 	console.log(postList);
+
+	let today = {
+		month: 'long',
+		day: 'numeric',
+		year: 'numeric',
+	};
+
 	return (
 		<Card>
 			<div className='PostWrapper'>
@@ -20,7 +27,9 @@ const PostSummary = ({ postList }) => {
 					<p>
 						Posted by {postList.authorFirstName} {postList.authorLastName}
 					</p>
-					<p>9 November, 9pm</p>
+					<p>
+						{postList.createdAt.toDate().toLocaleDateString('en-US', today)}
+					</p>
 				</div>
 			</div>
 		</Card>

@@ -17,7 +17,6 @@ import { isLoaded } from 'react-redux-firebase';
 
 import rootReducer from './redux/rootReducer';
 import fbConfig from './firebase/firebase.utils';
-// import store from './redux/store';
 
 import './index.css';
 import App from './App';
@@ -27,18 +26,22 @@ const store = createStore(
 	rootReducer,
 	compose(
 		applyMiddleware(thunk.withExtraArgument({ getFirestore, getFirebase })),
-		reduxFirestore(fbConfig)
+		reduxFirestore(firebase, fbConfig)
 	)
 );
 
 const rrfConfig = {
 	userProfile: 'users',
 	useFirestoreForProfile: true, // Firestore for Profile instead of Realtime DB
+	enableRedirectHandling: false,
+	resetBeforeLogin: false,
 };
+
+const newFbconfig = Object.assign(fbConfig, rrfConfig);
 
 const rrfProps = {
 	firebase,
-	config: rrfConfig,
+	config: newFbconfig,
 	dispatch: store.dispatch,
 	createFirestoreInstance,
 };

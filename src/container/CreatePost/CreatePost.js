@@ -19,6 +19,8 @@ class CreatePost extends Component {
 		event.preventDefault();
 		console.log(this.state);
 		this.props.createPost(this.state);
+		// Redirect the user to the home page after posted
+		this.props.history.push('/');
 
 		this.setState({
 			title: '',

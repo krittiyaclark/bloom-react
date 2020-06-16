@@ -7,9 +7,14 @@ import { compose } from 'redux';
 
 import Card from '../UI/Card/Card';
 
-const PostDetail = (props) => {
-	console.log(props);
-	const { post, auth } = props;
+const PostDetail = ({ post, auth }) => {
+	// console.log(props);
+	// const { post, auth } = props;
+	let today = {
+		month: 'long',
+		day: 'numeric',
+		year: 'numeric',
+	};
 
 	if (!auth.uid) return <Redirect to='/signinsignup' />;
 	if (post) {
@@ -23,7 +28,7 @@ const PostDetail = (props) => {
 					</p>
 				</div>
 				<div>
-					<p>9 November, 9pm</p>
+					<p>{post.createdAt.toDate().toLocaleDateString('en-US', today)}</p>
 				</div>
 			</Card>
 		);

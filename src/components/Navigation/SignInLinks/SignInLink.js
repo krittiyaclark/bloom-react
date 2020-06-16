@@ -7,7 +7,7 @@ import { signOut } from '../../../redux/auth/auth.actions';
 
 import './SignInLink.css';
 
-const SignInLinks = (props) => (
+const SignInLinks = ({ signOut, profile }) => (
 	<ul className='nav-links'>
 		<li>
 			<NavLink to='/createpost' className='link'>
@@ -15,17 +15,24 @@ const SignInLinks = (props) => (
 			</NavLink>
 		</li>
 		<li>
-			<NavLink to='/' className='link' onClick={props.signOut}>
+			<NavLink to='/' className='link' onClick={signOut}>
 				Sign Out
 			</NavLink>
 		</li>
 		<li>
 			<NavLink to='/' className='link'>
-				USR ICON
+				{profile.initials}
 			</NavLink>
 		</li>
 	</ul>
 );
+
+const mapStateToProps = (state) => {
+	console.log(state);
+	return {
+		profile: state.firebase.profile,
+	};
+};
 
 const mapDispatchToProps = (dispatch) => {
 	return {
@@ -33,4 +40,4 @@ const mapDispatchToProps = (dispatch) => {
 	};
 };
 
-export default connect(null, mapDispatchToProps)(SignInLinks);
+export default connect(mapStateToProps, mapDispatchToProps)(SignInLinks);
