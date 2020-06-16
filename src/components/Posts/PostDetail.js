@@ -1,4 +1,6 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
+
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
@@ -6,9 +8,10 @@ import { compose } from 'redux';
 import Card from '../UI/Card/Card';
 
 const PostDetail = (props) => {
-	const id = props.match.params.id;
 	console.log(props);
-	const { post } = props;
+	const { post, auth } = props;
+
+	if (!auth.uid) return <Redirect to='/signinsignup' />;
 	if (post) {
 		return (
 			<Card>
@@ -40,6 +43,7 @@ const mapStateToProps = (state, ownProps) => {
 	const post = posts ? posts[id] : null;
 	return {
 		post: post,
+		auth: state.firebase.auth,
 	};
 };
 

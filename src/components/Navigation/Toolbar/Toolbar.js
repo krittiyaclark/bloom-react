@@ -9,9 +9,10 @@ import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
 import './Toolbar.css';
 
 const Toolbar = ({ auth, drawerToggleClicked }) => {
-	// console.log(props);
+	// const { auth } = auth;
+	console.log(auth);
 
-	// const links = auth ? <SignInLinks /> : <SignOutLinks />;
+	const links = auth.uid ? <SignInLinks /> : <SignOutLinks />;
 	return (
 		<header>
 			<div className='Toolbar-Nav'>
@@ -24,9 +25,7 @@ const Toolbar = ({ auth, drawerToggleClicked }) => {
 					<Input />
 				</div>
 
-				<div className='Toolbar-Right'>
-					<SignInLinks /> <SignOutLinks />
-				</div>
+				<div className='Toolbar-Right'>{links}</div>
 			</div>
 		</header>
 	);
@@ -35,7 +34,7 @@ const Toolbar = ({ auth, drawerToggleClicked }) => {
 const mapStateToProps = (state) => {
 	console.log(state);
 	return {
-		auth: state.auth.authError,
+		auth: state.firebase.auth,
 	};
 };
 

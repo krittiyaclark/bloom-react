@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import authReducer from './user/user.reducer';
+import authReducer from './auth/auth.reducer';
 import postReducer from './post/post.reducer';
 
 import { firestoreReducer } from 'redux-firestore';

@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import { signOut } from '../../../redux/user/user.actions';
+import { signOut } from '../../../redux/auth/auth.actions';
 // import { auth } from '../../../firebase/firebase.utils';
 
 import './SignInLink.css';

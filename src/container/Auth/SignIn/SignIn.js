@@ -6,7 +6,7 @@ import Button from '../../../components/UI/Button/Button';
 
 import { auth, signInWithGoogle } from '../../../firebase/firebase.utils';
 
-import { signIn } from '../../../redux/user/user.actions';
+import { signIn } from '../../../redux/auth/auth.actions';
 
 import './SignIn.css';
 
@@ -20,14 +20,6 @@ class SignIn extends Component {
 		event.preventDefault();
 		console.log(this.state);
 
-		// const { email, password } = this.state;
-
-		// try {
-		// 	await auth.signInWithEmailAndPassword(email, password);
-		// 	this.setState({ email: '', password: '' });
-		// } catch (error) {
-		// 	console.log(error);
-		// }
 		this.props.signIn(this.state);
 	};
 

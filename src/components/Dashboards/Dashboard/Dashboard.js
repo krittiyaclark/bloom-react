@@ -1,23 +1,20 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 
-import { fetchPost } from '../../../redux/post/post.actions';
 import Notification from '../Notification/Notifications';
 import PostList from '../../Posts/PostList';
 
 import './Dashboard.css';
 
 class Dashboard extends Component {
-	// componentDidMount() {
-	// 	const { fetchPost } = this.props;
-	// 	fetchPost();
-	// }
-
 	render() {
 		console.log(this.props);
-		const { posts } = this.props;
+		const { posts, auth } = this.props;
+		if (!auth.uid) return <Redirect to='/signinsignup' />;
 		return (
 			<div className='DashboardContainer'>
 				<section>
@@ -38,20 +35,10 @@ const mapStateToProps = (state) => {
 	console.log(state);
 	return {
 		posts: state.firestore.ordered.posts,
+		auth: state.firebase.auth,
 	};
 };
 
-const mapDispatchToProps = (dispatch) => {
-	console.log(dispatch);
-
-	return {
-		fetchPost: (posts) => {
-			dispatch(fetchPost(posts));
-		},
-	};
-};
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
 export default compose(
 	firestoreConnect([{ collection: 'posts' }]),
 	connect(mapStateToProps)

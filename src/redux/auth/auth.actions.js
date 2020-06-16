@@ -1,8 +1,3 @@
-// export const setCurrentUser = (user) => ({
-// 	type: 'SET_CURRENT_USER',
-// 	payload: user,
-// });
-
 export const signIn = (credentials) => {
 	return (dispatch, getState, { getFirebase }) => {
 		// initial firebase
