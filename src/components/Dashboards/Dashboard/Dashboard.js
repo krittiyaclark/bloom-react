@@ -13,7 +13,7 @@ import './Dashboard.css';
 class Dashboard extends Component {
 	render() {
 		console.log(this.props);
-		const { posts, auth } = this.props;
+		const { posts, auth, notifications } = this.props;
 		if (!auth.uid) return <Redirect to='/signinsignup' />;
 		return (
 			<div className='DashboardContainer'>
@@ -24,7 +24,7 @@ class Dashboard extends Component {
 
 				<aside>
 					<h3 className='section-title'>Notifications</h3>
-					<Notification />
+					<Notification notificationLists={notifications} />
 				</aside>
 			</div>
 		);
@@ -36,10 +36,14 @@ const mapStateToProps = (state) => {
 	return {
 		posts: state.firestore.ordered.posts,
 		auth: state.firebase.auth,
+		notifications: state.firestore.ordered.notifications,
 	};
 };
 
 export default compose(
-	firestoreConnect([{ collection: 'posts' }]),
+	firestoreConnect([
+		{ collection: 'posts' },
+		{ collection: 'notifications', limit: 5, orderBy: ['time', 'desc'] },
+	]),
 	connect(mapStateToProps)
 )(Dashboard);

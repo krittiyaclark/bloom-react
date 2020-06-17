@@ -1,0 +1,23 @@
+.notifications li span {
+	line-height: 2;
+}
+
+.card-content {
+	width: 100%;
+}
+
+.card-content li {
+	margin: 9px 0 9px;
+}
+
+span.text-info {
+	color: #57e6e6;
+}
+
+.note-date {
+	color: #ccc;
+}
+
+.notifications {
+	list-style: none;
+}
