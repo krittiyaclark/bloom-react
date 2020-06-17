@@ -21,7 +21,7 @@ const SignInLinks = ({ signOut, profile }) => (
 		</li>
 		<li>
 			<NavLink to='/' className='link'>
-				{profile.initials}
+				{profile.initials && profile.initials.toUpperCase()}
 			</NavLink>
 		</li>
 	</ul>
